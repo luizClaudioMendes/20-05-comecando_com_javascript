@@ -114,7 +114,48 @@ var olaMundo;
 
 
 
-### Aula 2.2
+### Aula 2.2 tipos de dados
+- numeros
+10; 
+10.5;
+
+- strings
+"ola";
+'Ola';
+
+no js os diferentes tipos de numeros como int, float, etc sao tratados todos como somente numeros;
+
+- booleanos
+true;
+false;
+
+- arrays
+sao containers de dados
+[];
+[10, "oi", true];
+
+- objetos
+{};
+{
+	nome: 'luiz',
+	sobrenome: 'das neves'
+};
+
+as propriedades do objeto podem estar na mesma linha ou cada um em uma linha
+
+- tipagem dinamica
+o js armazena seus valores em tipagem dinamica, ou seja, podemos declarar uma variavel e dar um numero para ela e logo depois designar um valor de string que irá funcionar.
+
+- outros valores
+
+undefined;
+ex:
+var z;
+
+null;
+ex.
+var pessoa = null;
+
 
 
 
