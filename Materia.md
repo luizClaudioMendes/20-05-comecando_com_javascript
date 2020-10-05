@@ -157,5 +157,56 @@ ex.
 var pessoa = null;
 
 
+### Aula 2.3 condicionais
+- == significa a pergunta, ex x == 5 é a pergunta x é igual a 5?
 
+- a sintaxe basica do if é 
+if(bool) {codigo a ser executado}
+
+if(x == 5){
+	
+}
+
+
+- a sintaxe basica do else é
+if(bool) {codigo a ser executado caso verdadeiro} else {codigo a ser executado caso falso}
+
+if(X >= 5) {
+	codigo
+}else {
+	codigo
+}
+
+- a sintaxe do else if é
+
+if(bool) {codigo a ser executado caso verdadeiro} else if(outra condicao bool) {codigo a ser executado caso verdadeiro} else {codigo a ser executado caso falso}
+
+if(x > 0) {
+	codigo
+}else if(x > -10) {
+	codigo
+}else {
+	codigo
+}
+
+
+- a sintaxe do switch é
+switch (x) {
+	case 1: codigo
+	break;
+	case 2: codigo
+	break;
+	default: codigo
+	...
+}
+
+
+
+x = 18;
+
+switch (x) {
+	case 18:
+		console.log('teste');
+		break;
+}
 
