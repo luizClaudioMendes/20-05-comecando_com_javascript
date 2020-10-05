@@ -39,3 +39,82 @@ isso esta dizendo que o node que ira fazer a compilacao do codigo.
 
 - para executar um arquivo js no sublime basta salvar e ir em tools > build
 
+### Aula 2.1 sintaxe basica
+no javascript todas as statements terminam em ;
+
+ex. var x = 15;
+
+podemos colocar duas statements seguidas:
+
+ex. var x = 15; var y = 10;
+
+tipos de valores que existem no js:
+- literais 
+- variaveis
+
+os literais sao os que sao fixos e os variaveis sao mudados de acordo com a necessidade.
+
+ex.
+literais:
+10;
+10.5;
+"Ola mundo"
+'ola mundo'
+
+no js as strings podem usar aspas duplas ou simples
+
+variaveis:
+usamos a palavra chave var
+
+ex:
+var x;
+
+operadores no js
+operadores sao sinais que agregam açoes aos valores
+
+ex.
+= atribui o valor à variavel
+
+operadores aritimeticos
++ soma
+- subtraçao
+* multiplicacao
+/ divisao
+
+quando juntamos operadores e valores temos expressoes.
+
+expressoes podem ter valores literais como variaveis
+
+y + 10;
+
+20 *  30;
+
+x * y;
+
+comentarios 
+os comentarios no js sao as // ou /**/ para blocos
+
+
+identificadores
+sao os nomes possiveis para uma variavel no js
+
+os identificadores no js sao camelCase
+
+ex:
+sintaxeBasica
+
+nao devemos usar acentos nos identificadores
+
+todos os identificadores no js devem começar com letras, underscore(_) ou com dollar ($)
+
+var $1;
+var _1;
+var ola;
+var olaMundo;
+
+
+
+### Aula 2.2
+
+
+
