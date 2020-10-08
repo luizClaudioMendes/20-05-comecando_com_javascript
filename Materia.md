@@ -237,3 +237,31 @@ for (var prop in obj) {
 	console.log(prop); /// prop é a chave
 	console.log(obj[prop]); // imprimira o valor
 }
+
+### Aula 2.5 hoisting
+hoisting siginifica que o javascript sempre passa todas as declaraçoes de variaveis e funçoes para o topo do script.
+
+se colocarmos em um arquivo:
+
+x = 5;
+
+var x;
+
+isto ira funcionar pois o hoisting convertera desta forma:
+var x;
+x = 5;
+
+isso ocorre tanto para variaveis quanto para funcoes.
+
+mas se designarmos um valor, a designacao nao é levada para o topo:
+
+console.log(x);
+x = 5;
+console.log(x);
+var x = 10;
+console.log(x);
+
+ira imprimir:
+undefined;
+5
+10
