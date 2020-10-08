@@ -210,3 +210,30 @@ switch (x) {
 		break;
 }
 
+### Aula 2.4 loops
+// while
+
+while (expressao) {
+	codigo a ser executado se a expressao for verdadeira
+}
+
+// do while
+do {
+	codigo a ser executado
+} while (expressao)
+
+//for
+for (var y = 0; y < 10; y++) {
+	codigo a ser executado
+}
+
+// for in
+var obj = {
+	nome: 'Jon',
+	sobrenome: 'Snow'
+};
+
+for (var prop in obj) {
+	console.log(prop); /// prop é a chave
+	console.log(obj[prop]); // imprimira o valor
+}
