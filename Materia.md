@@ -324,4 +324,22 @@ dizerOi.apply({}, ["brant"]);
 se em vez de passarmos um objeto vazio {}, passarmos null
 ele interpretara e tera como escopo o objeto global
 
-### Aula 3.3
+### Aula 3.3 auto invocacao
+
+podemos fazer uma funcao ser executada ao ser criada.
+isso se chama funcao auto invocada
+para isso vamos utilizar uma funcao anonima e no mesmo momento que a declararmos ela sera executada.
+
+(function () {
+	console.log('Ola');
+})
+
+somente isso nao faz ela ser executada.
+
+mas se colocarmos parentesis ela sera invocada automaticamente:
+
+(function () {
+	console.log('Ola');
+})();
+
+
