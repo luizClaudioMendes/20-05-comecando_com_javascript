@@ -265,3 +265,39 @@ ira imprimir:
 undefined;
 5
 10
+
+
+### Aula 3.1 declaracao
+
+funçoes sao blocos de codigo que podem ser utilizados mais de uma vez.
+
+function nomeDaFuncao (argumentos) {
+	codigo a ser executado;
+}
+
+para chamar a funcao:
+nomeDaFuncao(argumentos);
+
+outra maneira de fazer uma funçao é usando uma expressao de funçao. para isso armazenamos a funcao dentro de uma variavel. para isso usamos uma funçao anonima
+
+var nomeDaVariavelDaFuncao = function (argumentos) {
+	codigo a ser executado;
+}
+
+nomeDaVariavelDaFuncao(argumentos);
+
+existe uma 3 maneira de declarar uma funcao, com o construtor da funcao.
+
+var nomeFuncao = new Function("argumento", "codigo a ser executado (em formato de String);");
+
+nomeFuncao(argumentos);
+
+#### hoisting com funçoes
+
+o hoisting tambem é aplicado as funcoes.
+
+se usarmos a primeira forma, o hoisting leva tudo para o topo do script.
+
+se usarmos a 2 ou terceira forma, o hoisting é feito com a variavel. logo se tentarmos chamar a funcao antes de declara-la nao ira funcionar pois somente a variavel foi levada para cima.
+
+
