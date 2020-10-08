@@ -301,3 +301,27 @@ se usarmos a primeira forma, o hoisting leva tudo para o topo do script.
 se usarmos a 2 ou terceira forma, o hoisting é feito com a variavel. logo se tentarmos chamar a funcao antes de declara-la nao ira funcionar pois somente a variavel foi levada para cima.
 
 
+### Aula 3.2 invocaçao
+
+invocacao de funcoes.
+
+function dizerOi(nome) {
+	console.log(nome);
+}
+
+maneira tradicional:
+dizerOi("Arya");
+
+metodo call:
+dizerOi.call({}, "Robb");
+
+o metodo call permite algumas outras possibilidades,
+como por exemplo, passar um objeto que sera o escopo da funcao.
+
+metodo apply:
+dizerOi.apply({}, ["brant"]);
+
+se em vez de passarmos um objeto vazio {}, passarmos null
+ele interpretara e tera como escopo o objeto global
+
+### Aula 3.3
