@@ -430,8 +430,82 @@ function apresentacao () {
 	console.log("Ola eu sou " + this.nome);
 }
 
+### Aula 4.2 objetos -- prototype
+o que é o prototype?
+o js nao tem a orientacao a objeto plenamente implementada, somente alguns conceitos.
+
+o prototype tem o conceito parecido com uma classe.
+
+todo objeto tem um prototype.
+
+nos criamos um prototype atravez de uma funcao, que é como se fosse o construtur da classe.
+
+entao imaginemos um arquivo js chamado Personagem.js
+nele colocariamos a funcao:
+
+ex:
+function Personagem(nome, idade, corDoCabelo) {
+	this.nome = nome;
+	this.idade = idade;
+	this.corDoCabelo = corDoCabelo;
+	this.especie = "Humano";
+	this.apresentar = function () {
+		console.log("Olá");
+	}
+}
 
 
+para criar este objeto basta usar a keyeword new
+
+ex:
+
+var ned = new Personagem("ned", 40, "Preto");
+var sansa = new Personagem("sansa", 18, "Cobre");
+
+
+ned.apresentar();
+sansa.apresentar();
+
+desta forma criamos um prototype.
+
+agora, depois disso se adicionarmos uma propriedade ao objeto, nao significa que adicionamos ao prototype.
+
+ex:
+ned.darTchau = function() {
+	console.log("tchau");
+}
+
+o darTchau foi adicionao ao ned. se tentarmos usar isso na sansa, nao ira funcionar.
+
+agora se adicionarmos ao prototype funciona.
+
+ex:
+
+Personagem.prototype.darTchau = function () {
+	console.log("tchau");
+}
+
+agora tanto para o ned quanto para a sansa é possivel utilizar a funcao darTchau().
+
+
+em todos os objetos do javascript é possivel adicionar novas functions.
+
+ex:
+
+var teste = "teste";
+
+teste é uma String.
+
+entao podemos adicionar uma nova function no prototype String.
+
+ex:
+String.prototype.apagar = function () {
+	return "";
+}
+
+console.log("teste".apagar());
+
+isso é alterar a classe em tempo de execuçao.
 
 
 
