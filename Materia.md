@@ -507,7 +507,61 @@ console.log("teste".apagar());
 
 isso é alterar a classe em tempo de execuçao.
 
+### Aula 4.3 objetos -- arrays
+os objetos de js sao variaveis que guardam variaveis.
+
+var obj - {
+	foo: "foo",
+	bar: "bar"
+}
 
 
+os arrays sao bem parecidos, mas em vez de ter nomes nos indices, eles tem valores numericos.
 
+para declarar um array basta usar []
+
+var arrayEmBranco = [];
+
+var personagens = ["ned", "robb", "jon"];
+
+para acessar o array, basta colocar a posicao do array
+
+ex:
+personagens[0];
+
+o array sempre começa com 0;
+
+o array no javascript nao é tipado, logo pode colocar qualquer tipo de dados misturados.
+
+ex:
+var objs = ["ned", 2, function() {}, []];
+
+se por exemplo quisermos ter uma especie de tabela
+
+ex:
+var personagens = [
+	["ned", 40],
+	["jon", 16],
+	["sansa", 18]
+]
+
+desta forma podemos armazenar dados desde que nao nos interesse o nome do indice.
+
+um objeto pode ser acessado pelo nome do indice
+
+ex:
+
+var pers1 = {
+	nome: "ned",
+	idade: 40
+};
+
+para acessar basta colocar
+
+console.log(pers1["nome"]);
+console.log(pers1["idade"]);
+
+no array somente com o index
+
+console.log(personagens[1]);
 
