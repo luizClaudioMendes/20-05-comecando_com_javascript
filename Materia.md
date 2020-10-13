@@ -342,4 +342,32 @@ mas se colocarmos parentesis ela sera invocada automaticamente:
 	console.log('Ola');
 })();
 
+### Aula 3.4 closures
+se criarmos uma variavel no arquivo js, essa variavel terá escopo global dentro do arquivo.
+
+se criarmos uma variavel dentro de uma funçao essa variavel terá o escopo da funcao e logo apos a sua execuçao, esta sera destruida.
+
+os closures sao funcoes que acessao o escopo da funcao pai mesmo depois de ele ter sido destruido.
+
+entao, como usar?
+
+exemplo: queremos implementar um contador. se criarmos no arquivo js, qualquer funcao pode altera-lo. se criarmos dentro de uma funcao ele reseta sempre que a funcao é executada.
+
+entao neste exemplo, precisamos utilizar uma closure.
+
+ex:
+
+//declaramos o contador dentro de uma funcao autoexecutada
+var tick = (function () {
+	var contador = 0;
+
+	return function() {
+		contador = contador + 1;
+	}
+})(); 
+
+
+desta forma, ao chamarmos tick(), o contador sera sempre incrementado e a variavel contador nao podera ser alterada por ninguem exeto o tick()
+
+
 
