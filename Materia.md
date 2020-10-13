@@ -343,9 +343,9 @@ mas se colocarmos parentesis ela sera invocada automaticamente:
 })();
 
 ### Aula 3.4 closures
-se criarmos uma variavel no arquivo js, essa variavel terá escopo global dentro do arquivo.
+se criarmos uma variavel var no arquivo js, essa variavel terá escopo global dentro do arquivo.
 
-se criarmos uma variavel dentro de uma funçao essa variavel terá o escopo da funcao e logo apos a sua execuçao, esta sera destruida.
+se criarmos uma variavel var dentro de uma funçao essa variavel terá o escopo da funcao e logo apos a sua execuçao, esta sera destruida.
 
 os closures sao funcoes que acessao o escopo da funcao pai mesmo depois de ele ter sido destruido.
 
@@ -368,6 +368,72 @@ var tick = (function () {
 
 
 desta forma, ao chamarmos tick(), o contador sera sempre incrementado e a variavel contador nao podera ser alterada por ninguem exeto o tick()
+
+
+### Aula 4.1 objetos -- definicao
+os objetos sao tudo no javascript.
+ele trata quase tudo como objeto, booleanos, dados primitivos, arrays, funcoes, expressoes regulares, etc.
+
+mas o que sao objetos?
+objetos sao variaveis que possuem variaveis dentro dela.
+
+como declarar um objeto?
+o metodo mais facil e simples é usar {}
+
+ex:
+var obj = {
+	
+};
+
+dentro do objeto podemos ter propriedades:
+ex:
+var obj = {
+	nome: "Jon",
+	sobrenome: "snow",
+	idade: 16
+};
+
+as propriedades sao as variaveis contidas dentro do objeto.
+
+como acessar os valores dentro dos objetos?
+
+basta colocar o nome_do_objeto.nome_propriedade
+
+ex:
+obj.nome
+
+tambem podemos colocar funcoes nas propriedades do objeto
+
+ex com funcao anonima:
+var obj = {
+	nome: "Jon",
+	sobrenome: "snow",
+	idade: 16,
+	apresentar: function(){
+		console.log("Ola eu sou " + this.nome);
+	}
+};
+
+para acessar a variavel com funcao, basta usar:
+
+obj.apresentar();
+
+ex com funcao nominada:
+var obj = {
+	nome: "Jon",
+	sobrenome: "snow",
+	idade: 16,
+	apresentar: apresentacao
+};
+
+function apresentacao () {
+	console.log("Ola eu sou " + this.nome);
+}
+
+
+
+
+
 
 
 
