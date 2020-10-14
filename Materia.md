@@ -565,3 +565,46 @@ no array somente com o index
 
 console.log(personagens[1]);
 
+### Aula 4.4 objetos -- Date
+o js disponibiliza o objeto Date para manipular datas.
+
+a utilizacao basica dele é:
+
+ex:
+var d = new Date();
+
+isso vai fazer ele colocar a data e hora atual no objeto, no fuso horario do browser.
+
+mas tambem existem outros formatos.
+
+ex:
+
+var d = new Date("07/01/2016");
+
+isso faz ele criar um objeto com a data passada em parametro com o horario de meia noite no fuso horario do browser
+
+isso vale tambem para as horas
+
+ex:
+var d = new Date("07/01/2016 05:00:30");
+
+isso faz ele criar o objeto com a data e o horario passado em parametro no fuso horario do browser
+
+ele tambem aceita o formato ano/mes/dia
+var d = new Date("2016-01-01");
+
+esse dia é o dia passado em parametro no horario de meia noite do meridiano de greenwich (GMT).
+
+nisso, se voce imprimir o horario ele convertera para o fuso horario do browser.
+
+CUIDADO com essa utilizacao.
+nesse caso ele imprimiu o dia 31/12/2015 às 22:00 na conversao para o fuso horario do browser.
+
+outra forma de se criar o objeto date é passando o tempo UNIX
+
+var d = new Date(1467827595397);
+
+
+
+
+
