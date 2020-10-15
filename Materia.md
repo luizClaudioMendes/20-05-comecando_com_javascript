@@ -1001,3 +1001,32 @@ para sair do console do node
 ctrl + c
 ctrl + c
 
+### instalando o node.js no Windows
+ a instalacao do node no windows é bem simples.
+
+ no site nodejs.org, basta baixar a versao recomendada, que neste caso é a 4.4.4LTS.
+
+ após baixar, clicar no instalador para abrir.
+
+ como a intençao não é estudar nodejs e sim javascript, basta seguir com a instalacao padrao.
+
+ após a instalacao, no cmd, basta executar os seguintes comandos:
+
+ para exibir a versao
+ => node -v
+
+ para entrar no console do node:
+ => node
+
+ a partir de agora podemos digitar codigos javascript que serao executados
+
+ ex:
+
+ => console.log('teste');
+
+ para sair do console do node:
+
+ctrl + c
+ctrl + c
+
+
