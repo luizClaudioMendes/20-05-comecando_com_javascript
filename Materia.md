@@ -815,3 +815,111 @@ arrayClubes = arrayClubes.concat(arrayClubesBrasileiros, arrayClubesInventados);
 console.log(arrayClubes);
 
 
+### Aula 6.1 boas praticas
+algumas boas praticas para trabalhar com js.
+
+#### evitar colocar variaveis no escopo global, pois na hora que incluir o arquivo no codigo ela vai poder ser acessado em outros arquivos. o ideal é colocar ela dentro de um escopo, que pode ser a funcao autoexecutada.
+
+ex:
+(function() {
+	var escopoLocal;
+})();
+
+#### na hora de declarar variaveis, o hoisting sempre leva elas para o inicio. se ele ja faz isso, é melhor agente colocar as variaveis logo no inicio, de forma a facilitar a leitura do codigo. evita confusao e fica mais claro o codigo.
+
+ex:
+(function() {
+	var escopoLocal;
+
+	escopoLocal = "foo";
+	console.log(escopoLocal);
+})();
+
+#### podemos ter varias variaveis a serem declaradas, entao nao precisamos usar a palavra chave var, let ou const repetitivamente. podemos usar somente uma vez a palavra chave e usar virgulas.
+
+ex:
+(function() {
+	var escopoLocal,
+		variavel1,
+		variavel2;
+
+	escopoLocal = "foo";
+	console.log(escopoLocal);
+})();
+
+#### usar sempre string com aspas duplas em vez de aspas simples, pois a maioria das linguagens de programacao usam aspas duplas e no js o JSON, que é o modo de escrever objetos no js, alguns compiladores nao entendem a string com aspas simples.
+
+ex:
+(function() {
+	var escopoLocal,
+		variavel1,
+		variavel2,
+		obj = {
+			foo: "bar"
+		};
+
+
+	escopoLocal = "foo";
+	console.log(escopoLocal);
+})();
+
+
+#### declaracao de arrays e objetos. o ideal é que se sao poucas propriedades deve-se deixar em uma linha. se houverem mais propriedades ai sim colocar cada uma em uma linha. cuidados ao quebrar em varias linhas, para se eliminar os espaços em branco no final das propriedades, pois ajuda a reduzir o tamanho do codigo.
+
+ex:
+(function() {
+	var escopoLocal,
+		variavel1,
+		variavel2,
+		obj = {foo: "bar"},
+		obj1 = {
+			prop1: 1,
+			prop2: 2,
+			prop3: 3,
+			prop4: 4,
+			prop5: 5
+		},
+		array [1,2,3],
+		array2[
+			1,
+			2,
+			3,
+			4,
+			5
+		];
+
+
+	escopoLocal = "foo";
+	console.log(escopoLocal);
+})();
+
+#### assuntos. se voce esta mexendo com o mesmo assunto, nao precisa dar espaçamento de uma linha. se o assunto for alterado, deve-se separar com uma linha em branco.
+
+ex:
+(function() {
+
+	//mesmo assunto, sem linha em branco
+	var escopoLocal,
+		variavel1,
+		variavel2,
+		obj = {foo: "bar"},
+		obj1 = {
+			prop1: 1,
+			prop2: 2,
+			prop3: 3,
+			prop4: 4,
+			prop5: 5
+		},
+		array [1,2,3],
+		array2[
+			1,
+			2,
+			3,
+			4,
+			5
+		];
+
+	//mudou de assunto, linha em branco
+	escopoLocal = "foo";
+	console.log(escopoLocal);
+})();
