@@ -936,3 +936,68 @@ ex:
 ## explorando a linguagem javascript
 o intiuito de colocar as materias seguidas é a reaproveitar a materia que for identica. entao so sera lançado aqui coisas que complementem ou acrescentem a materia que ja foi mencionada acima.
 
+### instalando o node.js no MAC
+para instalar o node.js basta ir no site nodejs.org e baixar a versao recomendada.
+
+o node roda a mesma engine usada pelo chrome.
+
+ao baixar o package basta somente instalar como um software normal.
+
+será demonstrado aqui a instalacao pelo homebrew.
+
+acessar brew.sh
+
+para instalar o homebrew basta seguir as instrucoes no site,
+mas basicamente basta copiar a linha e executar no cmd.
+
+#### no homebrew -- instalar o nodejs
+na linha de comando, 
+
+=> brew info node
+da informaçoes sobre os pacotes existentes no brew. 
+
+=> brew install node
+instalara a versao mais atual no brew.
+
+mas nao queremos a versao mais atual do brew. queremos a 4.4.4 LTS
+
+entao devemos fazer:
+
+=> brew search node
+
+ai vai aparecer as versoes do node existentes no brew
+
+caso nao apareça a lista:
+
+=> brew tap homebrew/versions
+
+ai vai atualizar a lista de versoes. basta executar o comando => brew search nodes
+
+identificamos na lista a versao que queremos, que neste caso é a 4.4.4 e copiamos da lista a coluna do meio.
+ex:
+homebrew/versions/node4-lts
+
+na linha de comando executar:
+
+=> brew install homebrew/versions/node4-lts
+
+
+para testar:
+no cmd, digite:
+=> node
+
+para entrar no console do node.
+
+pronto. agora podemos usar o javascript no cmd.
+
+para testar digite:
+
+=> console.log('Ola');
+
+sera exibido a palavra ola
+
+para sair do console do node
+
+ctrl + c
+ctrl + c
+
