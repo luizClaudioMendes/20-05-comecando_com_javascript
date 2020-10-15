@@ -1,6 +1,11 @@
-# começando com Javascript
-## iniciado em 05/10/2020
-## terminado em EM ANDAMENTO
+# começando com Javascript e explorando a linguagem javascript
+## começando com Javascript
+### iniciado em 05/10/2020
+### terminado em 15/10/2020
+
+## explorando a linguagem javascript
+### iniciado em 15/10/2020
+### terminado em EXECUCAO
 
 ### Aula 1.1 Introducao ao Javascript
 o javascript é uma linguagem de programaçao interpretada, que significa que o codigo passa por um interpretador para depois seguir para a maquina para executar suas funcionalidades.
