@@ -7,6 +7,9 @@
 ### iniciado em 15/10/2020
 ### terminado em EXECUCAO
 
+
+## começando com Javascript
+
 ### Aula 1.1 Introducao ao Javascript
 o javascript é uma linguagem de programaçao interpretada, que significa que o codigo passa por um interpretador para depois seguir para a maquina para executar suas funcionalidades.
 
@@ -928,3 +931,8 @@ ex:
 	escopoLocal = "foo";
 	console.log(escopoLocal);
 })();
+
+
+## explorando a linguagem javascript
+o intiuito de colocar as materias seguidas é a reaproveitar a materia que for identica. entao so sera lançado aqui coisas que complementem ou acrescentem a materia que ja foi mencionada acima.
+
