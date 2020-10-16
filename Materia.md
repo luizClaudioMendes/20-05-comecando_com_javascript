@@ -1029,4 +1029,21 @@ ctrl + c
 ctrl + c
 ctrl + c
 
+### Rodando JavaScript no Sublime Text no Mac
+- para rodar o js no sublime precisamos salvar o arquivo como .js.
 
+- configurar o sublime para ele compilar o js. para isso:
+-- tools > build system > new build system
+--- retirar o que existir por lá e colocar:
+{
+	"cmd":["node", "$file"],
+	"selector": "source.js",
+	"working_dir": "${project_path:${folder}}",
+	"path": "/usr/local/bin"
+}
+
+isso esta dizendo que o node que ira fazer a compilacao do codigo.
+
+--- salvar como javascript.sublime-build
+
+- para executar um arquivo js no sublime basta salvar e ir em tools > build
