@@ -1145,7 +1145,6 @@ isso esta dizendo que o node que ira fazer a compilacao do codigo.
 
 ### 2.4. Tipo String
 
-
 => ver ### Aula 5.1 funcoes uteis -- manipulando strings
 
 
@@ -1182,3 +1181,31 @@ console.log(frase.slice(-17, -13));//arte
 #### localizacao de um caractere
 qual caractere esta na posicao X?
 console.log(frase.charAt(4));//t
+
+### 2.5. Tipo Boolean
+	var ativo = true;
+
+	console.log(ativo);
+	console.log(typeof ativo);
+
+#### o que da false e o que da true no JS?
+	=> 0 é false
+	ex: if(0) {.....}, nunca entrara aqui porque 0 sempre é false
+
+	=> '' é false (string vazia)
+
+	=> NaN é false
+
+	=> null é false
+
+	=> undefined é false
+
+	=> false é false
+
+	 console.log(!!1);//true
+	 console.log(!!0);//false
+	 console.log(!!'');//false
+	 console.log(!!NaN);//false
+	 console.log(!!null);//false
+	 console.log(!!undefined);//false
+	 console.log(!!false);//false
