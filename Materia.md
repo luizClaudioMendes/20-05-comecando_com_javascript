@@ -1052,3 +1052,10 @@ isso esta dizendo que o node que ira fazer a compilacao do codigo.
 	=> usar config ### Aula 1.3 preparando o ambiente
 
 
+### 2.1. Variáveis e hoisting
+
+	=> ver ### Aula 2.1 sintaxe basica
+	=> ver ### Aula 2.5 hoisting
+	
+
+
