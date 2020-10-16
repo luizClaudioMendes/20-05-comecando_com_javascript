@@ -1047,3 +1047,8 @@ isso esta dizendo que o node que ira fazer a compilacao do codigo.
 --- salvar como javascript.sublime-build
 
 - para executar um arquivo js no sublime basta salvar e ir em tools > build
+
+### Rodando JavaScript no Sublime Text no Windows
+	=> usar config ### Aula 1.3 preparando o ambiente
+
+
