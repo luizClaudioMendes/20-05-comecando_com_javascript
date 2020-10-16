@@ -1057,5 +1057,18 @@ isso esta dizendo que o node que ira fazer a compilacao do codigo.
 	=> ver ### Aula 2.1 sintaxe basica
 	=> ver ### Aula 2.5 hoisting
 	
+### 2.2. Tipagem dinâmica
 
+	=> ver ### Aula 2.2 tipos de dados
 
+	var idade = 25;
+	console.log(typeof idade); // exibe qual o tipo da variavel idade
+	console.log(idade);
+
+	idade += " anos";
+	console.log(typeof idade); // exibe qual o tipo da variavel idade
+	console.log(idade);
+
+	idade = false;
+	console.log(typeof idade); // exibe qual o tipo da variavel idade
+	console.log(idade);
