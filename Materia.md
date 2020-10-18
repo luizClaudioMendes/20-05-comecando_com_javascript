@@ -1436,3 +1436,7 @@ for(;;) {
 		break;
 	}
 }
+
+### 2.13. Estrutura de controle while
+=> ver ### Aula 2.4 loops
+
