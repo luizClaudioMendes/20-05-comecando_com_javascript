@@ -1584,5 +1584,5 @@ console.log('chamado arguments ', verArguments(1,2));
 console.log(typeof subtrair);//function
 
 
-
+###3.5. Escopo de função e global
 
