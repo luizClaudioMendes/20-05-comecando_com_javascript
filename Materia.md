@@ -1944,6 +1944,8 @@ nomes.forEach(function(e){
 //essa funcao é que vai receber o elemento do array
 
 
+### 5.6. Funções toString() e join()
+=> ver ### Aula 5.3 funcoes uteis -- manipulando arrays
 
 
 
