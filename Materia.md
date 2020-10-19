@@ -1480,5 +1480,26 @@ porque criamos funcoes? para reaproveitar codigo. inclusive parametrizando, pass
 
 os nomes das funcoes sao em camelcase.
 
+### 3.2. Alert e console.log
+o javascript ja fornece varias funcoes que agente pode usar. 
+
+duas delas sao o alert e o console.log
+
+usando o developer tools do chroem, na aba console podemos usar o javascript em browser.
+
+vamos usar ele para testar as duas functions
+
+se digitarmos:
+
+alert('Algaworks');
+
+ira exibir a janela no browser com a mensagem 'Algaworks'.
+
+se digitarmos:
+
+console.log('Algaworks');
+
+na aba console ira aparecer 'Algaworks'.
+
 
 
