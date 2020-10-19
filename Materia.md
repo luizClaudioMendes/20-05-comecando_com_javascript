@@ -1874,3 +1874,7 @@ var julia = {
 console.log('Pedro e Julia tem o mesmo email?', pedro.igualA(julia));
 console.log('Pedro e Pedro tem o mesmo email?', pedro.igualA(pedro));
 
+
+### 5.1. Introdução a arrays
+=> ver ### Aula 5.3 funcoes uteis -- manipulando arrays
+=> ver ### Aula 4.3 objetos -- arrays
