@@ -1973,5 +1973,28 @@ voce pode acessar:
 https://www.w3schools.com/js/js_array_methods.asp
 
 
+### 6.1. Conhecendo o Developer Tools
+no browser, se voce apertar F12 
+
+as abas:
+
+#### elements
+ele mostra os elementos na tela. se voce passar o mouse ele mostra qual é o elemento.
+
+na parte da direita mostra as classes e as imagens usadas na tela.
+
+da tambem para alterar os componentes da tela diretamente na tela.
+
+#### console
+o console mostra o logs do sistema de front end.
+
+os console.log tambem aparecem aqui
+
+#### network 
+mostra as requisicoes realizadas pela tela
+
+estas sao as principais abas do developer tools
+
+
 
 
