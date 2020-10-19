@@ -1921,7 +1921,9 @@ console.log(foxObj.modelo);
 //no objeto acessamos pelo nome da propriedade
 
 
+### 5.4. Adicionando e removendo elementos do array
 
+=> ver ### Aula 5.3 funcoes uteis -- manipulando arrays
 
 
 
