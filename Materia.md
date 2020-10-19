@@ -1966,6 +1966,12 @@ fox[3]();
 // o array pode ter qualquer tipo de dado
 // inclusive misturados como o exemplo do fox
 
+### 5.8. Mais da API de arrays
+para conhecer mais functios da api de arrays
+voce pode acessar:
+
+https://www.w3schools.com/js/js_array_methods.asp
+
 
 
 
