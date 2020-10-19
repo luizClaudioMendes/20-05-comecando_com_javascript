@@ -1469,6 +1469,16 @@ if(x != null) {
 	console.log('x nao tem valor util');
 }
 
+### 3.1. Introdução a funções
+
+metodo convencional de declaracao de funcao
+function nome(args) {
+	return;
+}
+
+porque criamos funcoes? para reaproveitar codigo. inclusive parametrizando, passando argumentos. tambem criamos encapsulamento.
+
+os nomes das funcoes sao em camelcase.
 
 
 
