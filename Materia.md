@@ -1584,5 +1584,83 @@ console.log('chamado arguments ', verArguments(1,2));
 console.log(typeof subtrair);//function
 
 
-###3.5. Escopo de função e global
+### 3.5. Escopo de função e global
 
+//toda variavel declarada fora de uma funcao é global
+
+var nome = 'Algaworks';// variavel global
+
+var capitalizar = function () {
+	var nome = 'Algaworks'.toUpperCase();//variavel local
+}
+
+var capitalizar2 = function () {
+	nome = 'Algaworks'.toUpperCase();//variavel global
+}
+
+capitalizar();
+console.log('nome global:', nome);
+
+capitalizar2();
+console.log('nome global:', nome);
+
+
+// tente ao maximo nao declarar variaveis em escopo global
+
+
+
+### 3.6. Closures
+
+=> ver ### Aula 3.4 closures
+
+// como exemplo, queremos criar um contador
+
+function incrementar() {
+	var valor = 0;
+
+	return ++valor;
+}
+
+console.log(incrementar());//1
+console.log(incrementar());//1
+console.log(incrementar());//1
+
+
+//desta forma sempre retorna 1, o que nao serve para o contador
+
+//entao podemos transformar a variavel em uma variavel global
+
+var valor1 = 0;
+
+function incrementar1() {
+	
+	return ++valor1;
+}
+
+console.log(incrementar1());//1
+console.log(incrementar1());//2
+console.log(incrementar1());//3
+
+//funcionou mas nao é o que procuramos, pois qualquer um pode mudar a variavel
+
+//qual a solucao? 
+
+//usar o conceito closure
+
+//no retorno da funcao devemos retornar outra funcao
+
+
+
+function incrementar2() {
+	var valor2 = 0;//variavel local protegida
+	return function() {
+		return ++valor2;
+	}
+}
+
+var fn = incrementar2();//necessario para executar pela primeira vez
+//pode ser substituida pela funcao autoexecutada
+
+console.log(fn());//1
+console.log(fn());//2
+console.log(fn());//3
