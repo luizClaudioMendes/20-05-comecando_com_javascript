@@ -2174,7 +2174,17 @@ outra coisa é que o browser coloca em cache e dessa forma ele nao fica baixando
 * podem existir bloqueios de internet no cliente que bloqueiam a CDN
 * segurança. voce controla o arquivo, impedindo que alguem coloque arquivos maliciosos no lugar
 
+### 7.1. Introdução ao jQuery
 
+jquery é uma biblioteca javascript que facilita a vida no trabalho com html, eventos, etc.
+
+ele tambem facilita com problemas de javascript e browsers.
+
+jquery.com
+
+o que importante neste site? a API Documentation
+
+como nao vamos nos aprofundar muito na utilizacao do Jquery, vamos usar a versar do CDN.
 
 
 
