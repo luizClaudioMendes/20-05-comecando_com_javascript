@@ -2146,6 +2146,57 @@ ao contrario de quando declaramos a variavel dentro de uma function.
 
 entao é uma boa pratica nao adicionar nada como variavel global, a nao ser que seja realmente necessario.
 
+### 6.5. CDN vs local hosting
+
+quando importamos o css do bootstrap, pegamos ele da CDN.
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+assim a pagina ficou bonita porque aplicou o css do bootstrap.
+
+desta forma nao foi necessario baixar nada para o nosso servidor. quando a tela carregou ela foi la no CDN tambem e baixou o css.
+
+podemos ver isso na aba network do developer tools.
+
+mas o que é melhor ? usara a CDN ou baixar os arquivos para o nosso servidor?
+
+o CDN é bom para: 
+* o browser tem uma limitacao de quantas requisicoes simultaneas ele faz para um mesmo dominio (umas 4 ou 5 requisicoes). ele so fara a 6 se uma das 5 ja estiver liberada.
+ao colocar na CDN o arquivo esta em um dominio diferente e é carregado em simultaneo.
+outra coisa é que o browser coloca em cache e dessa forma ele nao fica baixando constantemente o arquivo.
+
+* a infraestrutura da CDN tem uma escalabilidade muito boa, de forma que eles conseguem manter a capacidade de requisicoes simultaneas e é pouco provavel que a infra da CDN fique fora por muito tempo.
+
+* voce economiza trafego no seu servidor. vc paga pelo tanto de arquivos e pela quantidade de dados que saem do servidor. se ele estiver vindo do CDN voce nao é cobrado pelos dados do arquivo.
+
+é melhor usar arquivos locais por:
+* possibilidade de trabalhar offline
+* podem existir bloqueios de internet no cliente que bloqueiam a CDN
+* segurança. voce controla o arquivo, impedindo que alguem coloque arquivos maliciosos no lugar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
