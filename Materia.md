@@ -2186,6 +2186,113 @@ o que importante neste site? a API Documentation
 
 como nao vamos nos aprofundar muito na utilizacao do Jquery, vamos usar a versar do CDN.
 
+### 7.2. Seletores
+
+no arquivo HTML a chamada para o Jquery tem que ser a primeira dos javascripts.
+
+ a busca por id (#) é mais rapida mas ela tem o problema de que, se outro componente tiver o mesmo id, o jquery pega somente o primeiro.
+
+ é recomendado que se use a tecnica de classes css nomeadas.
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seletores</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<table class="table">
+	<thead>
+		<tr>
+			<th><input type="checkbox" id="selecao-todos-usuarios"></th>
+			<th>Nome</th>
+			<th>E-mail</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Ricardo</td>
+			<td>ricardo@email.com</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Sarah</td>
+			<td>sarah@email.com</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Manoel</td>
+			<td>manoel@email.com</td>
+		</tr>
+	</tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="seletores.js"></script>
+</body>
+</html>
+
+seletores.js
+//precisamos que o javascript somente execute
+//somente quando o html estiver totalmente carregado
+//$();
+//se colocarmos uma funcao no parametro acima, ela sera executada 
+$(function () {
+	//marcar o checkbox de selecionado todos
+	//pelo id
+	var selecaoTodosUsuarios = $('#selecao-todos-usuarios');
+	//o # informa que estamos usando o id
+
+	//selecionar todas as outras checkboxes
+	// pelo hook, de uma classe css, mesmo que ela nao existe
+	// no caso a classe é js-selecao-usuario
+	// por convençao, quando usamos uma classe css
+	// que nao existe para fazer esse hook
+	// agente coloca o js- antes do nome da classe css
+	var selecaoUsuarios = $('.js-selecao-usuario'); //o ponto indica que é uma classe css
+
+	//evento
+	/*selecaoUsuarios.on('click', function(e) {
+		console.log('clicou');
+		//pegar todos os componentes da classe .js-selecao-usuario que estao com o check marcado
+		var totalUsuariosSelecionados = $('.js-selecao-usuario:checked').length;
+
+		console.log(totalUsuariosSelecionados);
+
+		var checked = selecaoUsuarios.length === totalUsuariosSelecionados;
+		selecaoTodosUsuarios.prop('checked', checked);
+	});*/
+
+	//da forma acima, o evento ja funciona.
+	//mas vamos dar uma melhorada nele
+
+	selecaoUsuarios.on('click', function(e) {
+		console.log('clicou');
+		//pegar todos os componentes da classe .js-selecao-usuario que estao com o check marcado
+		var totalUsuariosSelecionados = selecaoUsuarios.filter(':checked').length; //aplicando o .filter do jquery
+
+		console.log(totalUsuariosSelecionados);
+
+		var checked = selecaoUsuarios.length === totalUsuariosSelecionados;
+		selecaoTodosUsuarios.prop('checked', checked);
+	});
+
+	//agora vamos tratar o botao de selecionar todos
+	selecaoTodosUsuarios.on('click', function (e) {
+		//queremos que, se o botao de selecionar todos for true
+		//todos os outros botoes fiquem true
+		//se for false, todos os outros fiquem false
+		selecaoUsuarios.prop('checked', selecaoTodosUsuarios.prop('checked'));
+	});
+
+});
 
 
 
