@@ -2294,6 +2294,154 @@ $(function () {
 
 });
 
+### 7.3. CSS
+
+manipular o css atraves do jquery.
+
+continuando com o exemplo anterior:
+
+quando selecionarmos uma linha a linha inteira deve mudar de cor. ao deselecionar a linha volta a cor normal.
+
+style.css
+body {
+	padding: 20px;
+}
+
+.selecionado {
+	color:blue;
+}
+
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seletores</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table class="table">
+	<thead>
+		<tr>
+			<th><input type="checkbox" id="selecao-todos-usuarios"></th>
+			<th>Nome</th>
+			<th>E-mail</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Ricardo</td>
+			<td>ricardo@email.com</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Sarah</td>
+			<td>sarah@email.com</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="js-selecao-usuario"></td>
+			<td>Manoel</td>
+			<td>manoel@email.com</td>
+		</tr>
+	</tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="manipulando-css.js"></script>
+</body>
+</html>
+
+manipulando-css.js
+$(function () {
+	var selecaoTodosUsuarios = $('#selecao-todos-usuarios');
+	var selecaoUsuarios = $('.js-selecao-usuario'); 
+
+	selecaoUsuarios.on('click', function(e) {
+		var totalUsuariosSelecionados = selecaoUsuarios.filter(':checked').length;
+		var checked = selecaoUsuarios.length === totalUsuariosSelecionados;
+		selecaoTodosUsuarios.prop('checked', checked);
+	});
+
+/*
+	selecaoTodosUsuarios.on('click', function (e) {
+		selecaoUsuarios.prop('checked', selecaoTodosUsuarios.prop('checked'));
+	});
+*/
+
+/*
+	selecaoUsuarios.on('change', function(evento) {
+		console.log('evento', evento);
+		var selecaoUsuario = $(evento.target);//transforma o objeto html em objeto jquery
+		console.log('selecao usuario', selecaoUsuario);
+		
+		//como a variavel selecaoUsuario é um objeto jquery
+		//agente pode verificar se ela esta marcada com o checked
+		if(selecaoUsuario.prop('checked'))  {
+			//precisamos mudar o css do tr e nao do seletor
+			//precisamos procurar nos pais dele ate chegar no primeiro tr
+			selecaoUsuario.parents('tr').addClass('selecionado');
+			//o parents no plural procura em todos os pais do elemento. o parent no singular
+			//procura somente pai mais proximo
+			// no parent, ao usar 'tr' estamos informando que queremos que ele procure
+			// pelo elemento tr. tambem podemos procurar por classes (.nomeClasse) ou id (#id)
+		}else {
+			//para retirar o css
+			selecaoUsuario.parents('tr').removeClass('selecionado');
+		}
+	});
+
+	*/
+
+		//mas com a nossa implementacao ate ao momento,
+		//nao vai funcionar se clicarmos no selecionar todos.
+
+		//entao adicionamos no evento do clique em todos o comportamento:
+	/*
+	selecaoTodosUsuarios.on('click', function (e) {
+		selecaoUsuarios.prop('checked', selecaoTodosUsuarios.prop('checked'));
+		if(selecaoTodosUsuarios.prop('checked')) {
+			selecaoUsuarios.parents('tr').addClass('selecionado');
+		}else {
+			selecaoUsuarios.parents('tr').removeClass('selecionado');
+		}
+
+	});
+	*/
+
+
+	//ok. funcionou.
+	//mas agora temos trechos do codigo duplicado
+	// entao vamos criar esta funcao
+	function estilizarLinhaUsuarios() {
+		selecaoUsuarios.filter(':checked').parents('tr').addClass('selecionado');
+		selecaoUsuarios.filter(':not(:checked)').parents('tr').removeClass('selecionado');
+	}
+
+	//e alterar nos eventos
+
+	selecaoUsuarios.on('change', function(evento) {
+		//var selecaoUsuario = $(evento.target);
+		/*
+		if(selecaoUsuario.prop('checked'))  {
+			selecaoUsuario.parents('tr').addClass('selecionado');
+		}else {
+			selecaoUsuario.parents('tr').removeClass('selecionado');
+		}*/
+		estilizarLinhaUsuarios();
+	});
+	selecaoTodosUsuarios.on('click', function (e) {
+		selecaoUsuarios.prop('checked', selecaoTodosUsuarios.prop('checked'));
+		/*if(selecaoTodosUsuarios.prop('checked')) {
+			selecaoUsuarios.parents('tr').addClass('selecionado');
+		}else {
+			selecaoUsuarios.parents('tr').removeClass('selecionado');
+		}*/
+		estilizarLinhaUsuarios();
+	});
+});
+
 
 
 
