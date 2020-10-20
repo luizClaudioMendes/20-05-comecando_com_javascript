@@ -2477,6 +2477,162 @@ o javascript tambem tem acesso ao http request, de forma programatica, da mesma 
 
 ou seja, o javascript consegue fazer essa requisicao e trabalhar a resposta e assim alterar o html.
 
+### 7.5. Ajax e promises
+para esta atividade precisaremos de um sistema spring para retornar as respostas dos estados e cidades.
+
+este sistema pode ser obtido em:
+alga.works/ws-js-localidades
+
+ao clicar no link, sera baixado um jar
+
+esse jar é uma aplicacao spring boot que tem basicamente implementado as endpoints rest que retornaram os estados e municipios (somente alguns, esta implementado hardcode).
+
+apos baixar o jar, para executa-lo basta executar no cmd:
+
+java -jar localidades-1.0.0.jar
+
+uma aplicacao spring sera levantada no localhost:8080
+
+como acessar essa aplicacao?
+
+localhost:8080/estados
+
+ele vai trazer os estados teste.
+
+localhost:8080/cidades?uf=SP
+
+ele vai trazer algumas cidades do estado passado
+
+essa aplicacao tambem esta no github em:
+www.github.com/algaworks/workshop-javascript-localidades
+
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax e Promises</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Estado e cidade</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Estado</label>
+					<select id="combo-estado" class="form-control">
+						<option value="MG">Minas Gerais</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Cidade</label>
+					<select id="combo-cidade" class="form-control" disabled="disabled">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="ajax-e-promises.js"></script>
+</body>
+</html>
+
+ajax-e-promises.js
+//fazer um ajax no servidor
+//localhost:8080/estados
+//para preencher o combo
+
+//como fazer uma requisicao ajax com o jquery?
+
+
+$(function () {//somente depois de a tela acabar de carregar
+	/*$.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET'
+	});*/
+
+	//ao acessar desta forma no browser, como estamos usando o html em um file, ocorre um erro de segurança
+	/*Access to XMLHttpRequest at 'http://localhost:8080/estados' from origin 'null' has been blocked by CORS policy: 
+	No 'Access-Control-Allow-Origin' header is present on the requested resource.*/
+	//o javascript tentou acessar o localhost, mas no browser estou em um file
+	//nisso o browser percebe e bloqueia
+	//como resolver?
+	//na documentacao do Jquery, basta procurar por dataType
+	//e dar uma lida na parte dos paramentros
+	// ao encontrar o "jsonp" 
+	// no caso o problema ocorre porque o html esta em um dominio (file) e o js esta em outro (localhost)
+	// entao o ajax fica:
+	/*$.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET',
+		dataType: 'jsonp'
+	});*/
+	//o servidor tambem precisa estar configurado para receber o jasonp
+
+	//pronto agora esta funcionando
+
+	//o ajax é isso. ele foi no servidor e retornou os dados
+	//como fazemos para pegar os resultados?
+
+	//existem alguns callbacks no jquery (callbacks sao funcoes que posso chamar apos o retorno dos dados)
+
+	/*$.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET',
+		dataType: 'jsonp',
+		success: function(data) {
+			console.log('voltou com sucesso', data);
+		},
+		error: function() {
+
+		}
+	});*/
+
+	//mas nao é legal fazer assim, e sim usar as promises
+
+	// o objeto retornado pelo ajax implementa as promises
+	var resposta = $.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET',
+		dataType: 'jsonp'//necessario somente porque nao estamos no mesmo dominio
+	});
+
+	//como é uma chamada externa, para o programa nao travar
+	// agente pode utilizar
+	//ex. de promise
+	resposta.done(function (estados) {
+		console.log('tude certo', estados);
+		//a resposta foi um array com os estados
+		estados.forEach(function(estado) {
+			console.log(estado);
+
+		});
+	});
+
+	//é possivel registra mais de uma promise
+	/*resposta.done(function (estados) {
+		console.log('tude certo', estados);
+	});/*
+
+	//é possivel registra uma promise fail
+	resposta.fail(function () {
+		alert('erro carregando');
+	});
+});
+
+
+
 
 
 
