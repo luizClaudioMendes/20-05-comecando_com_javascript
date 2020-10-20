@@ -2120,6 +2120,32 @@ isso é legal porque o browser começa a carregar de cima pra baixo, entao é re
 
 #### use sempre o comparador === para comparar valores de variaveis
 
+### 6.4. Objeto window
+
+quando agente carrega a pagina, o browser fornece um objeto window.
+
+dentro deste objeto é que existem varias funcoes, como o parseFloat().
+
+quando agente cria uma variavel solta como o valorElement, ou seja, nao esta dentro de uma funcao, mesmo com o var, essa variavel vai pra dentro de window.
+
+entao se digitarmos:
+
+window.valorElement 
+
+ele é acessivel e isso nao é legal.
+
+porque? 
+
+porque numa pagina agente pode carregar varios arquivos js.
+
+e ai imagina que no primeiro é definido a variavel e ele fica disponivel para os outros arquivos js.
+
+quando agente declara deste jeito agente esta declarando que essa variavel é global.
+
+ao contrario de quando declaramos a variavel dentro de uma function.
+
+entao é uma boa pratica nao adicionar nada como variavel global, a nao ser que seja realmente necessario.
+
 
 
 
