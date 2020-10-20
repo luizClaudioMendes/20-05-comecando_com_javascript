@@ -2442,6 +2442,40 @@ $(function () {
 	});
 });
 
+### 7.4. Introdução ao HTTP
+
+o portocolo HTTP já é bem antigo e facilmente entendivel.
+
+entao, como funciona?
+
+ao acessar um site, tipo o google, o browser envia uma requisicao para o servidor e recebe uma resposta.
+
+esse envio e recebimento é feito atraves do protocolo HTTP.
+
+(HTTP request e HTTP response)
+
+desta forma funciona toda a internet.
+
+dentro do request tem:
+* verbo (GET, POST, PUT, DELETE)
+cada um tem um objetivo
+** o GET é para recuperar coisas
+** o POST é para inserir coisas
+** 0 PUT é para atualizar
+** o DELETE apaga
+* URL (http://google.com?uf=MG)
+* HEADERS
+* PARAMETROS (query String, Payload, etc)
+
+dentro da response:
+* code (200 OK, 404, 500, etc)
+* headers
+* resposta (que tras os dados por exemplo)
+
+o que é ajax?
+o javascript tambem tem acesso ao http request, de forma programatica, da mesma forma que o browser faz, so que sem a interçao humana.
+
+ou seja, o javascript consegue fazer essa requisicao e trabalhar a resposta e assim alterar o html.
 
 
 
