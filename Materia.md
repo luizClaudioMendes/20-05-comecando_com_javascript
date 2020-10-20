@@ -2105,6 +2105,20 @@ valorElement.addEventListener('keyup', function(e){
 //digitar 100
 //apagar todos os digitos
 
+### 6.3. Boas práticas
+
+#### no aquivo html, porque foi declarado o arquivo js no final do arquivo html, antes de fechar o body?
+isso é legal porque o browser começa a carregar de cima pra baixo, entao é recomendado carregar no topo o css e no final o javascript.
+
+#### no javascript sempre use var para declarar as variaveis. nunca use o escopo global  para declarar as variaveis. a nao ser que voce tenha um motivo muito forte para usar a variavel global
+
+#### declare todas as variaveis no topo do arquivo
+
+#### inicialize sempre as variaveis
+
+#### nao use o new para criar variaveis. use a declaracao literal. ao usar o new ele cria um object  em vez o do tipo do javascript. assim se voce comparar vai dar sempre falso
+
+#### use sempre o comparador === para comparar valores de variaveis
 
 
 
