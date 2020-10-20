@@ -1995,6 +1995,118 @@ mostra as requisicoes realizadas pela tela
 
 estas sao as principais abas do developer tools
 
+### 6.2. Debug com o Developer Tools
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Debug com Developer Tools</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Cálculo valor total</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Valor</label>
+					<input type="text" class="form-control" id="valor">
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Valor total</label>
+					<p class="form-control-static" id="total">0</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src='total.js'></script>
+</body>
+</html>
+
+
+total.js
+console.log('iniciando o js');
+
+//pegar o elemento que tem o input do valor
+var valorElement = document.getElementById('valor');
+var valorTotal = document.getElementById('total');
+
+//adicionar um event listner
+
+//event listener com problemas para testar o debug
+/*
+valorElement.addEventListener('keyup', function(e){
+	console.log('valor', valorElement.value);
+	var total = 0;
+	var valor = valorElement.value;
+
+	if(valor < 10) {
+		total = valor + valor * 0.3 + 5;
+	}
+
+	valorTotal.innerHTML = total;
+});
+*/
+//para fazer o debug va no developer tools
+//na aba sources
+//selecione o arquivo js
+//clicando no numero da linha é adicionado um breakpoint
+
+//ao executar o codigo podemos clicar em:
+// => botao com pipe e play - avança ate ao proximo brakpoint ou fim do arquivo
+// => botao com arco iris e um ponto - avança pra proxima linha
+
+//verificamos que na event listener anterior, estava acontecendo uma concatenacao
+//o numero 1 digitado esta sendo enviado como string
+//e assim ele fazia a seguinte conta:
+
+//ex: digitado 1
+/*
+total = valor + valor * 0.3 + 5;
+total = '1' + 1*0.3 + 5
+total = '1' + 0.3 + 5
+total = '10.3' + 5
+total = '10.35'
+*/
+
+//event listener corrigido 
+valorElement.addEventListener('keyup', function(e){
+	console.log('valor', valorElement.value);
+	var total = 0;
+	var valor = parseFloat(valorElement.value ? valorElement.value : 0);
+
+	if(valor > 0 && valor < 10) {
+		total = valor + valor * 0.3 + 5;
+	} else if(valor >= 10 && valor < 50) {
+		total = valor + valor * 0.1 + 2;
+	} else {
+		total = valor;
+	}
+
+	valorTotal.innerHTML = total;
+});
+
+//com essa correçao, o numero inserido vira realmente um numero
+// e a conta é realizada corretamente
+// mais outras alteracoes foram realizadas para 
+// sanar as situacoes:
+// digitar 1
+//digitar 10
+//digitar 100
+//apagar todos os digitos
+
+
+
 
 
 
