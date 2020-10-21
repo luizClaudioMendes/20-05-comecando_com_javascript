@@ -2632,6 +2632,76 @@ $(function () {//somente depois de a tela acabar de carregar
 });
 
 
+### 7.6. Manipulação do DOM
+esta atividade é uma continuacao da anterior, tendo somente o codigo limpo para exemplificar a aula atual.
+
+index_manipulando_dom.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax e Promises</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Estado e cidade</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Estado</label>
+					<select id="combo-estado" class="form-control">
+						<option value="MG">Minas Gerais</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Cidade</label>
+					<select id="combo-cidade" class="form-control" disabled="disabled">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="manipulando_DOM.js"></script>
+</body>
+</html>
+
+manipulando_DOM.js
+$(function () {//somente depois de a tela acabar de carregar
+	var resposta = $.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET',
+		dataType: 'jsonp'//necessario somente porque nao estamos no mesmo dominio
+	});
+
+	resposta.done(function (estados) {
+		var comboEstado = $('#combo-estado');
+		//comboEstado.empty(); para limpar a lista do combo
+		comboEstado.html('<option>Selecione o estado</option>');
+		console.log('tude certo', estados);
+		//a resposta foi um array com os estados
+		estados.forEach(function(estado) {
+			console.log('UF: ', estado.uf);
+			console.log('nome: ', estado.nome);
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+			console.log(optionEstado);
+			comboEstado.append(optionEstado);//insere na ultima posicao
+			//comboEstado.prepend(optionEstado);//insere no inicio
+
+
+		});
+	});
+});
 
 
 
