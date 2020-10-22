@@ -2908,6 +2908,77 @@ function botao3Clicado () {
 
 
 
+### 8.3. Disparando eventos
+
+usar eventos customizados
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disparando eventos</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="row">
+	<div class="col-xs-2">
+		<div class="form-group">
+			<input type="text" id="atividade">
+		</div>
+	</div>
+	<div class="col-xs-3">
+		<div class="form-group">
+			<ul id="lista-atividades">
+			</ul>
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="disparando-eventos.js"></script>
+</body>
+</html>
+
+disparando-eventos.js
+$(function () {
+	var atividade = $('#atividade');
+	var listaAtividades = $('#lista-atividades');
+
+	atividade.on('keyup', function (e) {
+		var keyCode = e.keyCode;
+
+		if(keyCode === 13) {
+			//disparar o evento
+			//listaAtividades.prepend('<li>' + atividade.val() + '</li>');
+			//atividade.val('');
+
+			//da forma acima funciona
+			//mas nao é o melhor jeito de se fazer
+			//adicionarNaLista(atividade.val());
+			//atividade.val('');
+
+			//mas ainda nao esta bom. poderiamos quere chamar varias
+			//funcoes. entao a solucao seria disparar o evento aqui
+
+			atividade.trigger('algaworks', atividade.val());
+			atividade.val('');
+		}
+	});
+
+	/*function adicionarNaLista(texto) {
+		listaAtividades.prepend('<li>' + texto + '</li>');
+	}*/
+
+	//definicao de evento customizados
+	atividade.on('algaworks', function (evento, parametro) {
+		listaAtividades.prepend('<li>' + parametro + '</li>');
+	});
+});
+
 
 
 
