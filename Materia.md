@@ -2814,6 +2814,29 @@ $(function () {
 
 
 
+### 8.1. Introdução a eventos
+eventos sao muito importantes no javascript.
+os eventos sao reacoes quando algo acontece, ou seja, o codigo nao segue linha por linha e sim porque algo aconteceu.
+
+o codigo fica mais organizado e limpo.
+
+temos os eventos que o DOM dispara,
+ex: 
+addEventListener('keyup', ..... //javascript puro
+
+e 
+on('click', .... //jquery
+on('keyup', .... //jquery
+
+esses sao exemplos de eventos do DOM
+
+existem varios, como keydown, mouseup, mousedown, dblclick, 
+
+cada um desses eventos tem um objeto com informaçoes especificas como por exemplo a tecla que foi pressionada.
+
+mas tambem podemos criar nossos proprios eventos
+
+
 
 
 
