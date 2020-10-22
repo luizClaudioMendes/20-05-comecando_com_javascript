@@ -2980,7 +2980,51 @@ $(function () {
 });
 
 
+### 8.4. Temporizadores
 
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Temporizadores</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+
+		.esconde {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div class="text-center">
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/MsUhkKopZO4?autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="text-center">
+	<button id="botao-clique-aqui" type="button" class="btn btn-success btn-lg esconde">Clique aqui</button>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src='temporizadores.js'></script>
+</body>
+</html>
+
+temporizadores.js
+$(function () {
+
+	//temporizadores sao eventos que vao esperar algum 
+	//tempo antes de serem executados
+	//neste exemplo vamos exibir um video e
+	//apos 5 segundos ele exibe um botao
+
+	//setTimeout(function(){},tempo_em_milis);
+
+	setTimeout(function(){
+		$('#botao-clique-aqui').show();
+	},5000);
+
+});
 
 
 
