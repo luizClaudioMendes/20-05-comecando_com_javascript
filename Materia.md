@@ -2836,6 +2836,77 @@ cada um desses eventos tem um objeto com informaçoes especificas como por exemp
 
 mas tambem podemos criar nossos proprios eventos
 
+### 8.2. Eventos de manipulação do DOM
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Eventos de manipulaçao do DOM</title>
+</head>
+<body>
+
+	<button id="botao1">botao 1</button>
+
+	<button id="botao2" onclick="console.log('OK');">botao 2</button>
+
+	<button id="botao3" onclick="botao3Clicado()">botao 3</button>
+
+	<a href="http://www.google.com" id="link1">clique aqui</a>
+
+	<input type="text" id="input1">
+
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script src='eventos-manipulacao-do-dom.js'></script>
+</body>
+</html>
+
+eventos-manipulacao_do_dom.js
+$(function () {
+
+//associar o click do botao
+	$('#botao1').on('click', function (evento) {
+		console.log(arguments);
+		console.log(evento);
+		console.log('botao 1 clicado');
+	});
+
+	$('#link1').on('click', function (e) {
+		console.log('link 1 clicado');
+
+		//impedir que ao clicar no link o redirecionamento
+		//para o google seja executado
+		e.preventDefault();
+
+
+	});
+
+	$('#input1').on('keyup', function (e) {
+		console.log(e.keyCode);
+
+		if(e.keyCode === 13) {
+			alert('enter pressionado');
+		}
+
+	});
+
+
+
+
+
+});
+
+//embora seja tecnicamente viavel, nao é recomendada
+//esta abordagem.  o comportamento nao deve estar misturado com
+//a apresentacao.
+
+//o javascript direto no html tambem nao é recomendado.
+//cada linguagem deve ficar separada (html no html e javascript no javascript)
+function botao3Clicado () {
+		console.log('botao 3 clicado');	
+}
+
+
 
 
 
