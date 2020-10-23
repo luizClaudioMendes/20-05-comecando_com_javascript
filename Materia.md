@@ -3905,6 +3905,167 @@ Carro.call(fox, 'fox', 'aaa-111');// passando o objeto que vai receber os dados 
 
 Carro.apply(fox, ['fox', 'aaa-111']);
 
+### 9.10. Namespaces
+os namespaces sao algo muito simples mas ajuda a organizar bastante o codigo.
+
+vamos continuar com os arquivos da aula anterior
+
+namespaces.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax e Promises</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Estado e cidade</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Estado</label>
+					<select id="combo-estado" class="form-control">
+						<option value="MG">Minas Gerais</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Cidade</label>
+					<select id="combo-cidade" class="form-control" disabled="disabled">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="namespaces.js"></script>
+</body>
+</html>
+
+namespaces.js
+//quando esta assim, esta variavel esta no contexto global.
+//colocar coisas no escopo global nao é bom pois outros arquivos
+//podem alterar os valores e ocasionar erros dificeis de serem encontrados
+
+//entao uma declaracao como esta?
+//var Estado = (function () {
+//nao deve ocorrer
+
+//no javascript nao existe uma forma de fazer arquivos
+//isolados, impedindo outros arquivos acessarem os dados
+
+//entao podemos utilizar uma tecnica, criando namespaces
+//ao inves de termos variaveis soltas no sistema, podemos
+//criar uma variavel que ficara no escopo global
+//e ela armazenara as variaveis
+
+var Algaworks = {};//nome do projeto por exemplo
+Algaworks.Estado = (function () {//colocado a variavel como propriedade do objeto
+	function Estado() {
+		this.comboEstado = $('#combo-estado');
+		this.emmiter = $({});
+		this.on = this.emmiter.on.bind(this.emmiter);
+	}
+
+	Estado.prototype.iniciar = function() {
+		$.ajax({
+			url: 'http://localhost:8080/estados',
+			method: 'GET',
+			dataType: 'jsonp',
+			success: onEstadosRetornados.bind(this),
+			error: onError
+		});
+
+		this.comboEstado.on('change', onEstadoAlterado.bind(this));
+	}
+
+	function onEstadoAlterado() {
+		this.emmiter.trigger('alterado', this.comboEstado.val());
+	}
+
+	function onEstadosRetornados(estados) {
+		this.comboEstado.html('<option value="">Selecione o estado</option>');
+
+		estados.forEach(function(estado) {
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+
+			this.comboEstado.append(optionEstado);
+		}.bind(this));
+	}
+
+	function onError() {
+		alert('erro carregando os estados do servidor');
+	}
+
+	return Estado;
+
+
+})();
+
+Algaworks.Cidade = (function () {
+	function Cidade(estado) {
+		this.comboCidade = $('#combo-cidade');
+		this.estado = estado;
+
+	}
+
+	Cidade.prototype.iniciar = function () {
+		this.estado.on('alterado', onEstadoSelecionado.bind(this));
+	}
+
+	function onEstadoSelecionado(evento, uf) {
+		if(uf) {
+			$.ajax({
+				url: 'http://localhost:8080/cidades',
+				method: 'GET',
+				dataType: 'jsonp',
+				data: {
+					uf: uf
+				},
+				success: onCidadesRetornadas.bind(this),
+				error: onError
+			});
+		}else {
+			this.comboCidade.html('');
+			this.comboCidade.attr('disabled', 'disabled');
+		}
+	}
+
+	function onCidadesRetornadas(cidades) {
+		this.comboCidade.removeAttr('disabled');
+		this.comboCidade.html('<option>Selecione a cidade</option>');
+		cidades.forEach(function (cidade) {
+			var optionCidade = $('<option>').val(cidade.codigo).text(cidade.nome);
+			this.comboCidade.append(optionCidade);
+		}.bind(this));
+	}
+
+	function onError() {
+		alert('erro carregando cidades');
+	}
+
+	return Cidade;
+
+})();
+
+$(function() {
+	var estado = new Algaworks.Estado();//usando o namespace
+	estado.iniciar();
+
+	var cidade = new Algaworks.Cidade(estado);//usando o namespace
+	cidade.iniciar();
+
+});
+
 
 
 
