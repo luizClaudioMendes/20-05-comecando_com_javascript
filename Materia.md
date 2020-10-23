@@ -3886,9 +3886,24 @@ $(function() {
 });
 
 
+### 9.9. Chamando funções através de call e apply
 
+=> ver ### Aula 3.2 invocaçao
 
+complemento:
+function Carro(nome, placa) {
+	this.nome = nome;
+	this.placa = placa;
+}
 
+//var fox = new Carro('fox', 'aaa-1111');
+var fox = {};
+Carro.call(fox, 'fox', 'aaa-111');// passando o objeto que vai receber os dados da funcao
+
+//qual a diferença para o apply?
+//o apply os parametros precisam ir em um array
+
+Carro.apply(fox, ['fox', 'aaa-111']);
 
 
 
