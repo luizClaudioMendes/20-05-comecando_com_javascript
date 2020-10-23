@@ -3565,6 +3565,177 @@ Carro3.prototype.ligar = function () {
 //e podemos chamar essa function normalmente agora
 fiesta.ligar();//ligando o carro
 
+### 9.7. Usando a função bind
+
+usando_funcao_bind.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax e Promises</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Estado e cidade</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Estado</label>
+					<select id="combo-estado" class="form-control">
+						<option value="MG">Minas Gerais</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Cidade</label>
+					<select id="combo-cidade" class="form-control" disabled="disabled">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="usando_funcao_bind.js"></script>
+</body>
+</html>
+
+usando_funcao_bind.js
+/*$(function () {
+	var resposta = $.ajax({
+		url: 'http://localhost:8080/estados',
+		method: 'GET',
+		dataType: 'jsonp'
+	});
+
+	resposta.done(function (estados) {
+		var comboEstado = $('#combo-estado');
+		comboEstado.html('<option>Selecione o estado</option>');
+
+		estados.forEach(function(estado) {
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+
+			comboEstado.append(optionEstado);//insere na ultima posicao
+		});
+	});
+});
+*/
+
+//o exemplo anterior era um exemplo ja utilizado nas aulas.
+//ele basicamente, apos o carregamento completo da tela,
+//consultava o servico e buscava os nomes dos estados.
+// após isso, ele montava o combo de estados da tela
+
+//nesta nova abordagem, vamos alterar e terminar a tela
+//usando module pattern, funcao bind e a funcao contrutora
+
+/*
+var estado = (function () {
+	var comboEstado = $('#combo-estado');
+
+	function iniciar () {
+		console.log('iniciando o estado...');
+		$.ajax({
+			url: 'http://localhost:8080/estados',
+			method: 'GET',
+			dataType: 'jsonp',
+			success: onEstadosRetornados,
+			error: onError
+		});
+	}
+
+	function onEstadosRetornados(estados) {
+		comboEstado.html('<option>Selecione o estado</option>');
+
+		estados.forEach(function(estado) {
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+
+			comboEstado.append(optionEstado);
+		});
+	}
+
+	function onError() {
+		alert('erro carregando os estados do servidor');
+	}
+	return {
+		iniciar: iniciar
+	}
+
+
+})();
+
+estado.iniciar();
+*/
+// a forma utilizada acima esta correta e em comparacao com a primeira
+// ja possui bastante elegancia, com a utilizacao do module pattern
+
+//mas ainda nao é o que queremos
+
+//____________________________
+
+var Estado = (function () {
+	function Estado() {
+		this.comboEstado = $('#combo-estado');
+
+	}
+
+	Estado.prototype.iniciar = function() {
+		$.ajax({
+			url: 'http://localhost:8080/estados',
+			method: 'GET',
+			dataType: 'jsonp',
+			success: onEstadosRetornados.bind(this),//trocando o objeto. neste momento o this representa o obj do jquery e queremos que o this represente o obj estado
+			error: onError
+		});
+	}
+
+
+
+
+
+
+	/*
+
+	function iniciar () {
+		console.log('iniciando o estado...');
+		
+	}*/
+
+	function onEstadosRetornados(estados) {
+		this.comboEstado.html('<option>Selecione o estado</option>');
+
+		estados.forEach(function(estado) {
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+
+			this.comboEstado.append(optionEstado);
+		}.bind(this));//trocar o obj this. neste momento o obj this representa a window e queremos que o obj this seja o obj estado
+	}
+
+	function onError() {
+		alert('erro carregando os estados do servidor');
+	}
+
+	return Estado;
+
+
+})();
+
+$(function() {
+	var estado = new Estado();
+	estado.iniciar();
+});
+
+// a troca do this usando o bind é para alterar o objeto de contexto
+// na hora da execucao.
+
 
 
 
