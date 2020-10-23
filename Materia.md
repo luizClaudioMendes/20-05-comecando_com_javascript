@@ -3737,6 +3737,156 @@ $(function() {
 // na hora da execucao.
 
 
+### 9.8. Disparando eventos customizados
+nesta aula vamos continuar com o exemplo anterior e 
+ao selecionar o estado vamos carregar as cidades, disparando eventos customizados.
+
+disparando_eventos_customizados.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax e Promises</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		body {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading">Estado e cidade</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Estado</label>
+					<select id="combo-estado" class="form-control">
+						<option value="MG">Minas Gerais</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="">Cidade</label>
+					<select id="combo-cidade" class="form-control" disabled="disabled">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="disparando_eventos_customizados.js"></script>
+</body>
+</html>
+
+disparando_eventos_customizados.js
+var Estado = (function () {
+	function Estado() {
+		this.comboEstado = $('#combo-estado');
+
+		this.emmiter = $({});
+		this.on = this.emmiter.on.bind(this.emmiter);
+		//o on quando alguem der um trigger em emmioter quem tiver on nele recebe o evento
+
+	}
+
+	Estado.prototype.iniciar = function() {
+		$.ajax({
+			url: 'http://localhost:8080/estados',
+			method: 'GET',
+			dataType: 'jsonp',
+			success: onEstadosRetornados.bind(this),//trocando o objeto. neste momento o this representa o obj do jquery e queremos que o this represente o obj estado
+			error: onError
+		});
+
+		//quando for alterado o estado sera disparado o trigger 'alterado'
+		this.comboEstado.on('change', onEstadoAlterado.bind(this));
+	}
+
+	function onEstadoAlterado() {
+		this.emmiter.trigger('alterado', this.comboEstado.val());
+	}
+
+	function onEstadosRetornados(estados) {
+		this.comboEstado.html('<option value="">Selecione o estado</option>');
+
+		estados.forEach(function(estado) {
+			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
+
+			this.comboEstado.append(optionEstado);
+		}.bind(this));//trocar o obj this. neste momento o obj this representa a window e queremos que o obj this seja o obj estado
+	}
+
+	function onError() {
+		alert('erro carregando os estados do servidor');
+	}
+
+	return Estado;
+
+
+})();
+
+var Cidade = (function () {
+	function Cidade(estado) {
+		this.comboCidade = $('#combo-cidade');
+		this.estado = estado;
+
+	}
+
+	Cidade.prototype.iniciar = function () {
+		//handle quando o estado for alterado
+		this.estado.on('alterado', onEstadoSelecionado.bind(this));
+	}
+
+	function onEstadoSelecionado(evento, uf) {
+		if(uf) {
+			$.ajax({
+				url: 'http://localhost:8080/cidades',
+				method: 'GET',
+				dataType: 'jsonp',
+				data: {
+					uf: uf
+				},
+				success: onCidadesRetornadas.bind(this),
+				error: onError
+			});
+		}else {
+			this.comboCidade.html('');
+			this.comboCidade.attr('disabled', 'disabled');
+		}
+	}
+
+	function onCidadesRetornadas(cidades) {
+		this.comboCidade.removeAttr('disabled');
+		this.comboCidade.html('<option>Selecione a cidade</option>');
+		cidades.forEach(function (cidade) {
+			var optionCidade = $('<option>').val(cidade.codigo).text(cidade.nome);
+			this.comboCidade.append(optionCidade);
+		}.bind(this));
+	}
+
+	function onError() {
+		alert('erro carregando cidades');
+	}
+
+	return Cidade;
+
+})();
+
+$(function() {
+	var estado = new Estado();
+	estado.iniciar();
+
+	var cidade = new Cidade(estado);
+	cidade.iniciar();
+
+});
+
+
+
 
 
 
