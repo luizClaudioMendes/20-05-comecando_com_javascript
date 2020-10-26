@@ -5,7 +5,7 @@
 
 ## explorando a linguagem javascript
 ### iniciado em 15/10/2020
-### terminado em EXECUCAO
+### terminado em 23/10/2020
 
 
 ## começando com Javascript
